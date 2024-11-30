@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { usePlayer } from "../hooks/usePlayer";
 import { Button } from "./ui/button";
 import AudioPlayer from 'react-h5-audio-player';
-import { ArrowLeftRight, Music, RotateCcw, User, Volume, VolumeOff } from "lucide-react";
+import { ArrowLeftRight, RotateCcw, User, Volume, VolumeOff } from "lucide-react";
 
 
 const Controls: React.FC= () => {

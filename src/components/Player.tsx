@@ -19,7 +19,7 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
     modifyPlayer(player.id, {x, y});
   };
 
-  const handleTransformEnd = (e: any) => {
+  const handleTransformEnd = () => {
     const node = playerRef.current;
     const scaleX = node.scaleX();
     const scaleY = node.scaleY();

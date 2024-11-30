@@ -16,11 +16,7 @@ const Controls: React.FC= () => {
 
   const id = "player-1"
   const player = players.filter(p => p.id === id)[0]
-
-  const rotatePlayer = () => {
-    modifyPlayer(id,  {rotation: player.rotation + 60});
-  };
-
+  
   const toogleDimensional = () => {
     modifyPlayer(id,  {isDimensional: !player.isDimensional});
   }

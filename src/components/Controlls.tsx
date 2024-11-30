@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import { usePlayer } from "../hooks/usePlayer";
 import { Button } from "./ui/button";
 import AudioPlayer from 'react-h5-audio-player';
-import { ArrowLeftRight, RotateCcw, User, Volume, VolumeOff } from "lucide-react";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from "@/components/ui/dropdown-menu";
+import { Info } from "lucide-react";
 
 
 const Controls: React.FC= () => {
@@ -55,17 +56,79 @@ const Controls: React.FC= () => {
     }
   }
   return (
-    <div className="mt-2 ml-2 flex items-center gap-3 fixed z-10">
-      <Button size="icon" variant="outline" onClick={flipPlayer}><ArrowLeftRight /></Button>
-      <Button size="icon" variant="outline" onClick={rotatePlayer}><RotateCcw/></Button>
-      <Button size="icon" variant="outline" disabled={players.length > 0} onClick={add}><User/></Button>
-      <Button size="icon" variant="outline" onClick={tooglePlayer}>{isPlaying ? <VolumeOff/>: <Volume/>}</Button>
-      <AudioPlayer
-        autoPlay
-        ref={playerRef}
-        className="absolute -z-40 -top-40"
-        src="/songs/Sangue.mp3"
-      />
+    <div className="">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="icon" variant="outline"><Info /></Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuGroup>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    Estatisticas
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem>
+                        Minhas estatisticas
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        Aumentar/Diminuir HP
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        Aumentar/Diminuir PS
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        Janela de items
+                      </DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuSeparator />
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    Personagem
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem onClick={rotatePlayer}>
+                        Girar personagem
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={flipPlayer}>
+                        Inverter horizontalmente
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={add} disabled={players.length >0}>
+                        Adicionar personagem
+                      </DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuSeparator />
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    Grupo
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem onClick={flipPlayer}>
+                        Estatisticas dos membros
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={tooglePlayer}>
+                        {isPlaying ? "Desligar BGS": "Ligar BGS"}
+                      </DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                    
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+        <AudioPlayer
+          autoPlay
+          ref={playerRef}
+          className="absolute -z-40 -top-40"
+          src="/songs/Sangue.mp3"
+        />
     </div>
   );
 };

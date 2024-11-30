@@ -3,7 +3,6 @@ import { Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import { PlayerType } from "../types/player";
 import { usePlayer } from "../hooks/usePlayer";
-
 type PlayerProps = {
   player: PlayerType;
 };
@@ -45,28 +44,28 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
   return (
     <>
       <Image
-        ref={playerRef} // Conecta a referência
-        x={player.x}
-        y={player.y}
-        width={player.width}
-        height={player.height}
-        draggable
-        scaleX={player.scaleX}
-        rotation={player.rotation}
-        image={image}
-        onDragMove={handleDragMove}
-        onTransformEnd={handleTransformEnd}
-      />
+          ref={playerRef} // Conecta a referência
+          x={player.x}
+          y={player.y}
+          width={player.width}
+          height={player.height}
+          draggable
+          scaleX={player.scaleX}
+          rotation={player.rotation}
+          image={image}
+          onDragMove={handleDragMove}
+          onTransformEnd={handleTransformEnd}
+        />
       <Transformer
-        ref={transformerRef}
-        boundBoxFunc={(oldBox, newBox) => {
-          if (newBox.width < 20 || newBox.height < 20) return oldBox;
-          return newBox;
-        }}
-        rotateEnabled={false}
-        resizeEnabled={false}
-        borderEnabled={false}
-      />
+          ref={transformerRef}
+          boundBoxFunc={(oldBox, newBox) => {
+            if (newBox.width < 20 || newBox.height < 20) return oldBox;
+            return newBox;
+          }}
+          rotateEnabled={false}
+          resizeEnabled={false}
+          borderEnabled={false}
+        />
     </>
   );
 };

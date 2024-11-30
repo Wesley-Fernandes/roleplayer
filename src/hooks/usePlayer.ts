@@ -20,8 +20,12 @@ export const usePlayer = create<Props>((set)=>({
         }))
     },
     modifyPlayer: (id, player) => {
-        set(state => ({
-            players: state.players.map(p => p.id === id? {...p,...player} : p)
-        }))
-    }
+        set(state => {
+          const index = state.players.findIndex(p => p.id === id);
+          if (index === -1) return state; // Evita loops se o jogador não existir
+          const updatedPlayers = [...state.players];
+          updatedPlayers[index] = { ...updatedPlayers[index], ...player };
+          return { players: updatedPlayers };
+        });
+      }
 }))

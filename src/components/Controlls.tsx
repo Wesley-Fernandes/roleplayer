@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import AudioPlayer from 'react-h5-audio-player';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSubContent } from "@/components/ui/dropdown-menu";
 import { Info } from "lucide-react";
+import { toast } from "sonner";
 
 
 const Controls: React.FC= () => {
@@ -20,6 +21,9 @@ const Controls: React.FC= () => {
     modifyPlayer(id,  {rotation: player.rotation + 60});
   };
 
+  const toogleDimensional = () => {
+    modifyPlayer(id,  {isDimensional: !player.isDimensional});
+  }
 
   const flipPlayer = () => {
     modifyPlayer(player.id, {scaleX: player.scaleX === 1 ? -1 : 1 });
@@ -35,6 +39,7 @@ const Controls: React.FC= () => {
       scaleX: 1,
       rotation: 0,
       imageSrc: "/player.png",
+      isDimensional: false,
     });
   }
 
@@ -55,6 +60,10 @@ const Controls: React.FC= () => {
       }
     }
   }
+
+  const onDevelopment = () => {
+    toast.info("Em desenvolvimento...")
+  }
   return (
     <div className="">
             <DropdownMenu>
@@ -69,16 +78,16 @@ const Controls: React.FC= () => {
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem disabled={!player} onClick={onDevelopment}>
                         Minhas estatisticas
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem disabled={!player} onClick={onDevelopment}>
                         Aumentar/Diminuir HP
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem disabled={!player} onClick={onDevelopment}>
                         Aumentar/Diminuir PS
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem disabled={!player} onClick={onDevelopment}>
                         Janela de items
                       </DropdownMenuItem>
                     </DropdownMenuSubContent>
@@ -91,14 +100,14 @@ const Controls: React.FC= () => {
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent>
-                      <DropdownMenuItem onClick={rotatePlayer}>
-                        Girar personagem
+                      <DropdownMenuItem disabled={!player} onClick={toogleDimensional}>
+                        Dimensionamento {player?.isDimensional ? "ativo":"desativado"}
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={flipPlayer}>
+                      <DropdownMenuItem disabled={!player} onClick={flipPlayer}>
                         Inverter horizontalmente
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={add} disabled={players.length >0}>
-                        Adicionar personagem
+                        Adicionar personagem 
                       </DropdownMenuItem>
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
@@ -110,8 +119,8 @@ const Controls: React.FC= () => {
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent>
-                      <DropdownMenuItem onClick={flipPlayer}>
-                        Estatisticas dos membros
+                      <DropdownMenuItem disabled={!player} onClick={onDevelopment}>
+                        Estatisticas do grupo
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={tooglePlayer}>
                         {isPlaying ? "Desligar BGS": "Ligar BGS"}

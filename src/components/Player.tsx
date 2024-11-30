@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect} from "react";
 import { Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import { PlayerType } from "../types/player";
@@ -62,9 +62,9 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
             if (newBox.width < 20 || newBox.height < 20) return oldBox;
             return newBox;
           }}
-          rotateEnabled={false}
-          resizeEnabled={false}
-          borderEnabled={false}
+          rotateEnabled={player.isDimensional ?? false}
+          resizeEnabled={player.isDimensional ?? false}
+          borderEnabled={player.isDimensional ?? false}
         />
     </>
   );

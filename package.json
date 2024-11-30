@@ -21,6 +21,7 @@
     "react-dom": "^18.3.1",
     "react-h5-audio-player": "^3.9.3",
     "react-konva": "^18.2.10",
+    "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "use-image": "^1.1.1",

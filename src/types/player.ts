@@ -7,4 +7,5 @@ export type PlayerType = {
     scaleX: number;
     rotation: number;
     imageSrc: string;
+    isDimensional: boolean;
 }

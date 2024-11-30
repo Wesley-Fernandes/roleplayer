@@ -1,6 +1,3 @@
-### README para o Projeto RPG com React-Konva
-
----
 
 # RPG com React-Konva
 
@@ -107,6 +104,3 @@ Para substituir a imagem do personagem:
 
 Este projeto é licenciado sob a [MIT License](LICENSE). Sinta-se à vontade para usá-lo e modificá-lo.
 
----
-
-Pronto para começar a desenvolver! 🚀
